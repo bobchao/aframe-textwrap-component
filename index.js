@@ -74,7 +74,7 @@ module.exports.component = {
 		//stolen from http://www.html5canvastutorials.com/tutorials/html5-canvas-wrap-text-tutorial/
 		function wrapText(context, text, x, y, maxWidth, lineHeight) {
 
-			// This regex replacement is for Chinese can't be break by space like English, 
+			// This regex replacement is for Chinese(or japanese) can't be break by space like English, 
 			// and English should keep wrap by space properly
 			var words = text.replace(/([\u4E00-\u9FCC])|((\w+)\s)/g,`$&\n`).split(/\n/);
 
