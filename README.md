@@ -1,4 +1,6 @@
-# AFrame Text Wrap Component
+# AFrame Text Wrap Component (CJK Unified Ideographs enhance version)
+
+( The origin version line wrap by space just for English, but it can't break CJK sentence properly, so I took some change for text split regex. )
 
 Wrappable text as a material for an [A-Frame](https://aframe.io) VR entity. Requires [`draw`](https://github.com/maxkrieger/aframe-draw-component).
 

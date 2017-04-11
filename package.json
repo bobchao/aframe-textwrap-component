@@ -1,7 +1,7 @@
 {
   "name": "aframe-textwrap-component",
   "version": "1.0.1",
-  "description": "Text wrapping for AFrame draw.",
+  "description": "Text wrapping for AFrame draw.(CJK Unified Ideographs enhance version)",
   "main": "index.js",
   "scripts": {
     "build": "browserify examples/main.js -o examples/build.js",
