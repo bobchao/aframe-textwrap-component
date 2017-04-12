@@ -1,4 +1,4 @@
-# AFrame Text Wrap Component (CJ Unified Ideographs enhance version)
+# AFrame Text Wrap Component (stroke text + CJ Unified Ideographs enhance version)
 
 ( The origin version line wrap by space just for English, but it can't break CJ sentence properly, so I took some change for text split regex. )
 
@@ -45,6 +45,7 @@ All properties have a default! :)
 |`y`|canvas y position of the text (upper left corner)|
 |`font`|css `font` string ([see here](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/font))|
 |`color`|color of the text|
+|`strokeColor`| color of text stroke path |
 |`textAlign`|text alignment ([see here](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textAlign))|
 |`textBaseline`|text baseline ([see here](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textBaseline))|
 |`direction`|text direction ([see here](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/direction))|
