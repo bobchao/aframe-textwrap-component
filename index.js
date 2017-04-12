@@ -30,6 +30,9 @@ module.exports.component = {
 		},
 		lineHeight: {
 			default: 20
+		},
+		strokeColor: {
+			default: false
 		}
 	},
 
@@ -39,6 +42,7 @@ module.exports.component = {
 	init: function () {
 		this.draw = this.el.components.draw;
 		this.draw.register(this.render.bind(this));
+		
 	},
 
 	/**
@@ -64,12 +68,29 @@ module.exports.component = {
 			ctx.fillRect(0, 0, canvas.width, canvas.height);
 		}
 
+    var textRender = TextRenderGen(this.data.strokeStyle,ctx)
+
+
 		ctx.fillStyle = this.data.color;
 		ctx.font = this.data.font;
 		ctx.textAlign = this.data.textAlign;
 		ctx.textBaseline = this.data.textBaseline;
 		ctx.direction = this.data.direction;
 		wrapText(ctx, this.data.text, this.data.x, this.data.y, this.data.width, this.data.lineHeight);
+
+    function TextRenderGen(strokeStyle,ctx){
+      if(strokeStyle){
+        return function(text,x,y){
+          ctx.strokeStyle=strokeStyle;
+			    ctx.strokeText(text,x,y);
+          ctx.fillText(text,x,y);
+        }
+      }else{
+        return function(text,x,y){
+          ctx.fillText(text,x,y);
+        }
+      }
+    }
 
 		//stolen from http://www.html5canvastutorials.com/tutorials/html5-canvas-wrap-text-tutorial/
 		function wrapText(context, text, x, y, maxWidth, lineHeight) {
@@ -79,20 +100,22 @@ module.exports.component = {
 			var words = text.replace(/([\u4E00-\u9FCC])|((\w+)\s)/g,`$&\n`).split(/\n/);
 
 			var line = "";
+      
 
 			for (var n = 0; n < words.length; n++) {
 				var testLine = line + words[n];
 				var metrics = context.measureText(testLine);
 				var testWidth = metrics.width;
 				if (testWidth > maxWidth && n > 0) {
-					context.fillText(line, x, y);
+          ctx.fillText(line, x, y)
+					textRender(line, x, y);
 					line = words[n];
 					y += lineHeight;
 				} else {
 					line = testLine;
 				}
 			}
-			context.fillText(line, x, y);
+			textRender(line, x, y);
 		}
 	},
 
