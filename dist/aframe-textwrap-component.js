@@ -42,7 +42,7 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// Browser distribution of the A-Frame component.
 	(function () {
@@ -66,9 +66,9 @@
 	})();
 
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports.component = {
 		dependencies: ["draw"],
@@ -145,16 +145,20 @@
 
 			//stolen from http://www.html5canvastutorials.com/tutorials/html5-canvas-wrap-text-tutorial/
 			function wrapText(context, text, x, y, maxWidth, lineHeight) {
-				var words = text.split(" ");
+
+				// This regex replacement is for Chinese(or japanese) can't be break by space like English,
+				// and English should keep wrap by space properly
+				var words = text.replace(/([\u4E00-\u9FCC])|((\w+)\s)/g,'$&\n').split(/\n/);
+
 				var line = "";
 
 				for (var n = 0; n < words.length; n++) {
-					var testLine = line + words[n] + " ";
+					var testLine = line + words[n];
 					var metrics = context.measureText(testLine);
 					var testWidth = metrics.width;
 					if (testWidth > maxWidth && n > 0) {
 						context.fillText(line, x, y);
-						line = words[n] + " ";
+						line = words[n];
 						y += lineHeight;
 					} else {
 						line = testLine;
@@ -172,5 +176,5 @@
 	};
 
 
-/***/ }
+/***/ })
 /******/ ]);
